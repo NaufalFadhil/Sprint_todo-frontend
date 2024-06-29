@@ -10,21 +10,32 @@ export default function Header() {
                     </div>
                 </div>
             </div>
-            <nav className="main-navbar">
+            <nav className="main-navbar bg-dark">
                 <div className="container">
                     <ul>
                         <li className="menu-item">
-                            <a href="index.html" className='menu-link'>
-                                <span><i className="bi bi-list-task"></i> On Going</span>
+                            <a href="/todo" className='menu-link'>
+                                <span><i className="bi bi-list-task"></i> Todo</span>
                             </a>
                         </li>
                         <li className="menu-item">
-                            <a href="completed.html" className='menu-link'>
+                            <a href="/ongoing" className='menu-link'>
+                                <span><i className="bi bi-list-task"></i> Ongoing</span>
+                            </a>
+                        </li>
+                        <li className="menu-item">
+                            <a href="/completed" className='menu-link'>
                                 <span><i className="bi bi-check2-square"></i> Completed</span>
                             </a>
                         </li>
+                        
                         <li className="menu-item">
-                            <a href="add.html" className='menu-link'>
+                            <a href="/canceled" className='menu-link'>
+                                <span><i className="bi bi-x-square"></i> Cancelled</span>
+                            </a>
+                        </li>
+                        <li className="menu-item">
+                            <a href="/add" className='menu-link'>
                                 <span><i className="bi bi-plus-square"></i> Add Task</span>
                             </a>
                         </li>
