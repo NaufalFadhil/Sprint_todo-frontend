@@ -1,7 +1,7 @@
 import React from 'react'
 import PriorityBadge from './PriorityBadge'
 
-export default function TaskTable({tasks}) {
+export default function TaskTable({tasks, onDelete}) {
 
   return (
     <div className="page-content">
@@ -28,7 +28,7 @@ export default function TaskTable({tasks}) {
                                             <td className="col-3">
                                                 <div className="d-flex align-items-center justify-content-end">
                                                     <button className="btn btn-sm btn-outline-primary">View & Edit</button>
-                                                    <button className="btn btn-sm btn-outline-danger ms-3">Delete</button>
+                                                    <button className="btn btn-sm btn-outline-danger ms-2" onClick={() => onDelete(task.id)}>Delete</button>
                                                 </div>
                                             </td>
                                         </tr>

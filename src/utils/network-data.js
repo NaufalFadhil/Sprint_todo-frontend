@@ -46,3 +46,12 @@ export const addTask = async (task) => {
         console.error(error);
     }
 }
+
+export const deleteTask = async (id) => {
+    try {
+        const response = await axios.delete(`${BASE_URL}/tasks/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}

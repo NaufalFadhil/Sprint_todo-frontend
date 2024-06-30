@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getCanceledTask, getCompletedTask, getOngoingTask, getTodoTask } from '../utils/network-data';
+import { deleteTask, getCanceledTask, getCompletedTask, getOngoingTask, getTodoTask } from '../utils/network-data';
 import TaskTable from '../components/General/TaskTable';
 
 export default function Task({status}) {
@@ -35,6 +35,13 @@ export default function Task({status}) {
         }
     }, [status]);
 
+    async function onDeleteHandler(id) {
+        await deleteTask(id);
+
+        const updatedTasks = tasks.filter(task => task.id !== id);
+        setTasks(updatedTasks);
+    }
+
     return (
         <div>
             <div className="content-wrapper container">
@@ -42,7 +49,7 @@ export default function Task({status}) {
                     <h3>{title} Task</h3>
                 </div>
                 
-                <TaskTable tasks={tasks} />
+                <TaskTable tasks={tasks} onDelete={onDeleteHandler} />
             </div>
         </div>
     )
