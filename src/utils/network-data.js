@@ -44,6 +44,7 @@ export const addTask = async (task) => {
         return response.data;
     } catch (error) {
         console.error(error);
+        return error.response.data;
     }
 }
 

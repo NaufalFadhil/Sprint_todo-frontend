@@ -44,13 +44,11 @@ export default function Task({status}) {
 
     return (
         <div>
-            <div className="content-wrapper container">
-                <div className="page-heading">
-                    <h3>{title} Task</h3>
-                </div>
-                
-                <TaskTable tasks={tasks} onDelete={onDeleteHandler} />
+            <div className="page-heading">
+                <h3>{title} Task</h3>
             </div>
+            
+            <TaskTable tasks={tasks} onDelete={onDeleteHandler} />
         </div>
     )
 }
