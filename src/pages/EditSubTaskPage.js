@@ -1,46 +1,59 @@
 import React, { useEffect } from 'react';
-import { deleteTask, getTaskById, updateTaskById } from '../utils/network-data'; // Make sure to have an update function in your utils
+import { getSubtaskById, updateTaskById } from '../utils/network-data'; // Make sure to have an update function in your utils
 import { useNavigate, useParams } from 'react-router-dom';
-import SubTaskTable from '../components/General/SubTaskTable';
 
-export default function DetailTaskPage() {
-  const { id } = useParams();
+export default function EditSubTaskPage() {
+  const { id, subId } = useParams();
   const navigate = useNavigate();
-  const [subtask, setSubtask] = React.useState([]);
 
   useEffect(() => {
-    getTaskDetails(id);
-  }, [id]);
+    getSubTaskDetails(id, subId);
+  }, [id, subId]);
 
-  async function getTaskDetails(id) {
-    const task = await getTaskById(id);
+  async function getSubTaskDetails(id, subId) {
+    const task = await getSubtaskById(id, subId);
 
     console.log("task", task.data);
     if (task.meta.code !== 200) {
       alert(task.meta.message);
       return;
     } else {
-      console.log("subtasks", task.data.subtasks);
-      setSubtask(task.data.subtasks);
-
       document.getElementById('editTitle').value = task.data.title;
-      document.getElementById('editDescription').value = task.data.description;
       document.getElementById('editStatus').value = task.data.status;
       document.getElementById('editPriority').value = task.data.priority;
       document.getElementById('editDueDate').value = task.data.due_date ? task.data.due_date : '';
     }
   }
 
-  async function onDeleteHandler(id) {
-    await deleteTask(id);
+  async function handleUpdateSubTask(event) {
+    event.preventDefault();
 
-    // const updatedTasks = tasks.filter(task => task.id !== id);
-    // setSubtask(updatedTasks);
-  }
+    const title = document.getElementById('editTitle').value;
+    const status = document.getElementById('editStatus').value;
+    const priority = document.getElementById('editPriority').value;
+    const dueDate = document.getElementById('editDueDate').value;
 
-  function navigateToAddSubtask() {
-    console.log("id ", id);
-    navigate(`/${id}/add`);
+    if (!title || !status || !priority) {
+      alert('Please fill all required fields');
+      return;
+    }
+
+    const priorityNumber = parseInt(priority.replace('P', ''));
+
+    const subtask = {
+      title,
+      status,
+      priority: priorityNumber.toString(),
+      due_date: dueDate
+    };
+
+    const response = await updateTaskById(id, subtask);
+
+    if (response.meta.code === 200) {
+      navigate('/');
+    } else {
+      alert(response.meta.message);
+    }
   }
 
   return (
@@ -48,30 +61,22 @@ export default function DetailTaskPage() {
       <section className="section">
         <div className="card">
           <div className="card-header">
-            <h4 className="card-title">Detail Task</h4>
+            <h4 className="card-title">Edit Sub-task</h4>
           </div>
 
           <div className="card-body text-start">
-            <form>
+            <form onSubmit={handleUpdateSubTask}>
               <div className="row">
                 <div className="col-md-12">
                   <div className="form-group">
-                    <label htmlFor="inputTitle">Title (readonly)</label>
-                    <input type="text" className="form-control" id="editTitle" placeholder="Enter title of task" readOnly />
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-md-12">
-                  <div className="form-group">
-                    <label htmlFor="inputDescription">Description (readonly)</label>
-                    <textarea type="text" className="form-control" id="editDescription" placeholder="Enter description of task" rows={3} readOnly />
+                    <label htmlFor="inputTitle">Title <span className="text-danger">*</span></label>
+                    <input type="text" className="form-control" id="editTitle" placeholder="Enter title of task" required />
                   </div>
                 </div>
               </div>
               <div className="row">
                 <div className="col-md-4">
-                  <h6>Status (readonly)</h6>
+                  <h6>Status <span className="text-danger">*</span></h6>
                   <fieldset className="form-group">
                     <select className="form-select" id="editStatus">
                       <option value={"todo"}>Todo</option>
@@ -82,7 +87,7 @@ export default function DetailTaskPage() {
                   </fieldset>
                 </div>
                 <div className="col-md-4">
-                  <h6>Priority (readonly)</h6>
+                  <h6>Priority <span className="text-danger">*</span></h6>
                   <fieldset className="form-group">
                     <select className="form-select" id="editPriority">
                       <option value="P0">P0 - Critical</option>
@@ -95,23 +100,20 @@ export default function DetailTaskPage() {
                 </div>
                 <div className="col-md-4">
                   <div className="form-group">
-                    <label htmlFor="helpInputTop">Due Date (readonly)</label>
-                    <input type="date" className="form-control" id="editDueDate" readOnly />
+                    <label htmlFor="helpInputTop">Due Date</label>
+                    <input type="date" className="form-control" id="editDueDate" />
+                  </div>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-md-12">
+                  <div className="form-group">
+                    <button type="submit" className="btn btn-primary">Save</button>
                   </div>
                 </div>
               </div>
             </form>
           </div>
-
-          <div className="card-footer">
-            <div className="d-flex justify-content-end">
-              <button type="submit" className="btn btn-primary" onClick={navigateToAddSubtask}>Add Sub-task</button>
-            </div>
-          </div>
-
-          {subtask ? (
-            <SubTaskTable taskId={id} tasks={subtask} onDelete={onDeleteHandler} />
-          ) : null}
         </div>
       </section>
     </div>

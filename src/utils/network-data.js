@@ -86,3 +86,12 @@ export const addSubtask = async (taskId, subtask) => {
         console.error(error);
     }
 }
+
+export const getSubtaskById = async (taskId, subtaskId) => {
+    try {
+        const response = await axios.get(`${BASE_URL}/tasks/${taskId}/subtasks/${subtaskId}`);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}

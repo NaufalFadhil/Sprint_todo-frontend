@@ -8,6 +8,7 @@ import AddTask from './pages/AddTask';
 import EditTaskPage from './pages/EditTaskPage';
 import DetailTaskPage from './pages/DetailTaskPage';
 import AddSubTaskPage from './pages/AddSubTaskPage';
+import EditSubTaskPage from './pages/EditSubTaskPage';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path='/:id/edit' element={<EditTaskPage />} />
           <Route path='/:id' element={<DetailTaskPage />} />
           <Route path='/:id/add' element={<AddSubTaskPage />} />
+          <Route path='/:id/sub/:subId/edit' element={<EditSubTaskPage />} />
           <Route path='*' element={<h1>Not Found</h1>} />
         </Routes>
         </div>

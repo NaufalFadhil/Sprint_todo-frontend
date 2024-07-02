@@ -8,19 +8,17 @@ export default function AddSubTaskPage() {
 
   async function saveTask() {
     const title = document.getElementById('inputTitle').value;
-    const description = document.getElementById('inputDescription').value;
     const status = document.getElementById('inputStatus').value;
     const priority = document.getElementById('inputPriority').value;
     const dueDate = document.getElementById('inputDueDate').value;
 
-    if (!title || !description || !status || !priority) {
+    if (!title || !status || !priority) {
       alert('Please fill all required fields');
       return;
     }
 
     const data = {
       title,
-      description,
       status,
       priority,
       due_date: dueDate

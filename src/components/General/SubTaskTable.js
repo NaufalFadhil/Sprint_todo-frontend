@@ -3,7 +3,7 @@ import PriorityBadge from './PriorityBadge'
 import { useNavigate } from 'react-router-dom';
 import StatusBadge from './StatusBadge';
 
-export default function TaskTable({tasks, onDelete}) {
+export default function TaskTable({taskId, tasks, onDelete}) {
   const navigate = useNavigate();
 
   const handleNavigationDetail = (id) => {
@@ -11,7 +11,7 @@ export default function TaskTable({tasks, onDelete}) {
   }
 
   const handleNavigationEdit = (id) => {
-    navigate(`/${id}/edit`);
+    navigate(`/${taskId}/sub/${id}/edit`);
   }
 
   return (

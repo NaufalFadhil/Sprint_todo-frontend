@@ -7,7 +7,7 @@ export default function EditTask() {
 
   useEffect(() => {
     getTaskDetails(id);
-  }, [id]); // Add dependency array to run only when id changes
+  }, [id]);
 
   async function getTaskDetails(id) {
     const task = await getTaskById(id);
@@ -49,7 +49,7 @@ export default function EditTask() {
       due_date: dueDate
     };
 
-    const response = await updateTaskById(id, task); // Assume you have an updateTaskById function in your utils
+    const response = await updateTaskById(id, task);
 
     if (response.meta.code === 200) {
       window.location.href = '/';
