@@ -8,6 +8,17 @@ export const getTodoTask = async () => {
         return response.data;
     } catch (error) {
         console.error(error);
+        return error.response.data;
+    }
+}
+
+export const getTaskById = async (id) => {
+    try {
+        const response = await axios.get(`${BASE_URL}/tasks/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+        return error.response.data;
     }
 }
 
@@ -35,6 +46,16 @@ export const getCanceledTask = async () => {
         return response.data;
     } catch (error) {
         console.error(error);
+    }
+}
+
+export const updateTaskById = async (id, task) => {
+    try {
+        const response = await axios.put(`${BASE_URL}/tasks/${id}`, task);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+        return error.response.data;
     }
 }
 
