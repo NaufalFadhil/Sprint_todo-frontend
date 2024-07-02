@@ -77,3 +77,12 @@ export const deleteTask = async (id) => {
         console.error(error);
     }
 }
+
+export const addSubtask = async (taskId, subtask) => {
+    try {
+        const response = await axios.post(`${BASE_URL}/tasks/${taskId}/subtasks`, subtask);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}

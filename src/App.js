@@ -24,6 +24,7 @@ function App() {
           <Route path='/add' element={<AddTask />} />
           <Route path='/edit/:id' element={<EditTaskPage />} />
           <Route path='/:id' element={<DetailTaskPage />} />
+          <Route path='/:id/add' element={<AddSubTaskPage />} />
           <Route path='*' element={<h1>Not Found</h1>} />
         </Routes>
         </div>
