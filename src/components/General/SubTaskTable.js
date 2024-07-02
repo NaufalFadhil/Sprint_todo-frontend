@@ -1,14 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PriorityBadge from './PriorityBadge'
 import { useNavigate } from 'react-router-dom';
 import StatusBadge from './StatusBadge';
 
-export default function TaskTable({taskId, tasks, onDelete}) {
+export default function SubTaskTable({taskId, tasks, onDelete}) {
   const navigate = useNavigate();
-
-  const handleNavigationDetail = (id) => {
-    navigate(`/${id}`);
-  }
 
   const handleNavigationEdit = (id) => {
     navigate(`/${taskId}/sub/${id}/edit`);
@@ -46,7 +42,7 @@ export default function TaskTable({taskId, tasks, onDelete}) {
                                                 <td className="col-3">
                                                     <div className="d-flex align-items-center justify-content-end">
                                                         <button className="btn btn-sm btn-outline-info ms-2" onClick={() => handleNavigationEdit(task.id)}>Edit</button>
-                                                        <button className="btn btn-sm btn-outline-danger ms-2" onClick={() => onDelete(task.id)}>Delete</button>
+                                                        <button className="btn btn-sm btn-outline-danger ms-2" onClick={() => onDelete(taskId, task.id)}>Delete</button>
                                                     </div>
                                                 </td>
                                             </tr>

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { deleteTask, getTaskById, updateTaskById } from '../utils/network-data'; // Make sure to have an update function in your utils
+import { deleteSubtask, getTaskById } from '../utils/network-data'; // Make sure to have an update function in your utils
 import { useNavigate, useParams } from 'react-router-dom';
 import SubTaskTable from '../components/General/SubTaskTable';
 
@@ -31,11 +31,12 @@ export default function DetailTaskPage() {
     }
   }
 
-  async function onDeleteHandler(id) {
-    await deleteTask(id);
+  async function onDeleteHandler(id, subId) {
+    await deleteSubtask(id, subId);
 
-    // const updatedTasks = tasks.filter(task => task.id !== id);
-    // setSubtask(updatedTasks);
+    const updatedSubtask = subtask.filter(task => task.id !== id);
+    setSubtask(updatedSubtask);
+    getTaskDetails(id);
   }
 
   function navigateToAddSubtask() {

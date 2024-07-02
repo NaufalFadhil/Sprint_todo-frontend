@@ -95,3 +95,21 @@ export const getSubtaskById = async (taskId, subtaskId) => {
         console.error(error);
     }
 }
+
+export const updateSubtaskById = async (taskId, subtaskId, subtask) => {
+    try {
+        const response = await axios.put(`${BASE_URL}/tasks/${taskId}/subtasks/${subtaskId}`, subtask);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const deleteSubtask = async (taskId, subtaskId) => {
+    try {
+        const response = await axios.delete(`${BASE_URL}/tasks/${taskId}/subtasks/${subtaskId}`);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}

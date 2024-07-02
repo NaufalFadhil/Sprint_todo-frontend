@@ -108,7 +108,7 @@ export default function EditSubTaskPage() {
               <div className="row">
                 <div className="col-md-12">
                   <div className="form-group">
-                    <button type="submit" className="btn btn-primary">Save</button>
+                    <button type="submit" className="btn btn-primary">Update Subtask</button>
                   </div>
                 </div>
               </div>
