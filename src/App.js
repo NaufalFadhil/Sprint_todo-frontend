@@ -6,6 +6,8 @@ import { Route, Routes } from 'react-router-dom';
 import Task from './pages/Task';
 import AddTask from './pages/AddTask';
 import EditTaskPage from './pages/EditTaskPage';
+import DetailTaskPage from './pages/DetailTaskPage';
+import AddSubTaskPage from './pages/AddSubTaskPage';
 
 function App() {
   return (
@@ -21,6 +23,7 @@ function App() {
           <Route path='/canceled' element={<Task status='canceled' />} />
           <Route path='/add' element={<AddTask />} />
           <Route path='/edit/:id' element={<EditTaskPage />} />
+          <Route path='/:id' element={<DetailTaskPage />} />
           <Route path='*' element={<h1>Not Found</h1>} />
         </Routes>
         </div>

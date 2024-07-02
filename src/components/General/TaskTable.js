@@ -5,6 +5,10 @@ import { useNavigate } from 'react-router-dom';
 export default function TaskTable({tasks, onDelete}) {
   const navigate = useNavigate();
 
+  const handleNavigationDetail = (id) => {
+    navigate(`/${id}`);
+  }
+
   const handleNavigationEdit = (id) => {
     navigate(`/edit/${id}`);
   }
@@ -33,7 +37,7 @@ export default function TaskTable({tasks, onDelete}) {
                                             </td>
                                             <td className="col-3">
                                                 <div className="d-flex align-items-center justify-content-end">
-                                                    <button className="btn btn-sm btn-outline-primary" onClick={() => handleNavigationEdit(task.id)}>Detail</button>
+                                                    <button className="btn btn-sm btn-outline-primary" onClick={() => handleNavigationDetail(task.id)}>Detail</button>
                                                     <button className="btn btn-sm btn-outline-info ms-2" onClick={() => handleNavigationEdit(task.id)}>Edit</button>
                                                     <button className="btn btn-sm btn-outline-danger ms-2" onClick={() => onDelete(task.id)}>Delete</button>
                                                 </div>
