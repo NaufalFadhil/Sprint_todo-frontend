@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { getSubtaskById, updateTaskById } from '../utils/network-data'; // Make sure to have an update function in your utils
+import { getSubtaskById, updateSubtaskById, updateTaskById } from '../utils/network-data'; // Make sure to have an update function in your utils
 import { useNavigate, useParams } from 'react-router-dom';
 
 export default function EditSubTaskPage() {
@@ -47,7 +47,7 @@ export default function EditSubTaskPage() {
       due_date: dueDate
     };
 
-    const response = await updateTaskById(id, subtask);
+    const response = await updateSubtaskById(id, subId, subtask);
 
     if (response.meta.code === 200) {
       navigate('/');
