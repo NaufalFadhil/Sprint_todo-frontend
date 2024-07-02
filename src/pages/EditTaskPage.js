@@ -45,7 +45,7 @@ export default function EditTask() {
       title,
       description,
       status,
-      priority: priorityNumber,
+      priority: priorityNumber.toString(),
       due_date: dueDate
     };
 
@@ -54,7 +54,6 @@ export default function EditTask() {
     if (response.meta.code === 200) {
       window.location.href = '/';
     } else {
-      console.log("error", response);
       alert(response.meta.message);
     }
   }
