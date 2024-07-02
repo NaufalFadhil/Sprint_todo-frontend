@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import { Route, Routes } from 'react-router-dom';
 import Task from './pages/Task';
 import AddTask from './pages/AddTask';
+import EditTaskPage from './pages/EditTaskPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path='/completed' element={<Task status='completed' />} />
           <Route path='/canceled' element={<Task status='canceled' />} />
           <Route path='/add' element={<AddTask />} />
+          <Route path='/edit/:id' element={<EditTaskPage />} />
           <Route path='*' element={<h1>Not Found</h1>} />
         </Routes>
         </div>
