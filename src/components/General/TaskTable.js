@@ -10,7 +10,7 @@ export default function TaskTable({tasks, onDelete}) {
   }
 
   const handleNavigationEdit = (id) => {
-    navigate(`/edit/${id}`);
+    navigate(`/${id}/edit`);
   }
 
   return (
